@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/Bases/home.dart';
+import 'package:todo/services/firebase_service.dart';
 
 class Botones extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _Botones extends State<Botones> {
   void onPressedIcon() {
     print("Test $onPressed");
     setState(() {
-       onPressed = !onPressed;
+      onPressed = !onPressed;
     });
   }
 
@@ -25,23 +26,22 @@ class _Botones extends State<Botones> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => Inicial())));
-            },
-            child: Text ("Google")
-          ),
+              onPressed: () async {
+                await FirebaseService.signInWithGoogle();
+              },
+              child: Text("Google")),
           ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => Inicial())));
-            },
-            child: Text ("Facebook")
-          ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => Inicial())));
+              },
+              child: Text("Facebook")),
           ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => Inicial())));
-            },
-            child: Text ("Twitter")
-          ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => Inicial())));
+              },
+              child: Text("Twitter")),
         ],
       ),
     );
